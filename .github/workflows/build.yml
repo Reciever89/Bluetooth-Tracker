@@ -9,25 +9,34 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: 1. Checkout Code
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: 2. Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: 3. Setup Java JDK
+      - name: Setup Java JDK
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
+          distribution: 'zulu'
           java-version: '17'
 
-      - name: 4. Setup EAS CLI
-        run: npm install -g eas-cli
-
-      - name: 5. Install Dependencies
+      - name: Install Dependencies
         run: npm install
 
-      - name: 6. Build App Code Check
-        run: npx expo export --platform android
+      - name: Prebuild Native Android Project
+        run: npx expo prebuild --platform android
+
+      - name: Build Android APK with Gradle
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleRelease --no-daemon
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Bluetooth-Tracker-APK
+          path: android/app/build/outputs/apk/release/app-release.apk
