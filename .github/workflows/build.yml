@@ -23,11 +23,15 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Prebuild Native Android Project
+      - name: Install Dependencies & Clean Bad Packages
         run: |
+          npm install
+          npm uninstall @expo/dom-webview
+          npx expo install expo-modules-core
+
+      - name: Clean Existing Native Folder & Prebuild
+        run: |
+          rm -rf android
           npx expo prebuild --platform android --clean
 
       - name: Build Android APK with Gradle
