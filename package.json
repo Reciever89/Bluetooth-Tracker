@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
+    "@expo/config-plugins": "^57.0.9",
     "@expo/metro-runtime": "~57.0.16",
-    "expo": "^46.0.21",
+    "expo": "^57.0.25",
     "expo-location": "^57.0.20",
     "expo-sqlite": "~57.0.3",
     "expo-status-bar": "~57.0.1",
