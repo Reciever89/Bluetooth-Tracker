@@ -3,17 +3,21 @@
     "name": "Bluetooth-Tracker",
     "slug": "Bluetooth-Tracker",
     "version": "1.0.0",
-    "orientation": "portrait",
-    "userInterfaceStyle": "light",
-    "ios": {
-      "supportsTablet": true
-    },
     "android": {
-      "package": "com.reciever89.bluetoothtracker"
+      "package": "com.anonymous.BluetoothTracker",
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "BLUETOOTH",
+        "BLUETOOTH_ADMIN",
+        "BLUETOOTH_CONNECT",
+        "BLUETOOTH_SCAN"
+      ]
     },
     "plugins": [
       "expo-sqlite",
-      "expo-status-bar"
+      "expo-location"
     ]
   }
 }
+

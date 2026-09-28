@@ -4,8 +4,12 @@ import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import * as SQLite from 'expo-sqlite';
 
-// SQLite Database Open
-const db = SQLite.openDatabaseSync('earbuds.db');
+// Try-Catch block for safe initialization
+try {
+  const db = SQLite.openDatabaseSync('tracker.db');
+} catch (error) {
+  console.log("Database init error:", error);
+}
 
 export default function App() {
   const [locationLogs, setLocationLogs] = useState([]);
